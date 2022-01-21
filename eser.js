@@ -129,8 +129,9 @@ for (let z = 1; z < 101; z++) {
 }
 */
 
+
 let size = 8;
-size = prompt("Inserisci la grandezza della scacchiera:");
+//size = prompt("Inserisci la grandezza della scacchiera:");
 let string = "";
 for (let row = 0; row < size; row++) {
     for (let col = 0; col < size; col++) {
@@ -151,3 +152,32 @@ for (let row = 0; row < size; row++) {
     string += "\n";
 }
 console.log(string);
+
+
+
+string = "";
+for (let row = 0; row < size; row++) {
+    for (let col = 0; col < size; col++) {
+        (row % 2 === 0 ? ((col % 2 === 0) ? string += " " : string += "#") : ((col % 2 === 0) ? string += "#" : string += " "))
+    }
+    string += "\n";
+}
+console.log(string);
+
+
+
+let type = 0;
+switch (type) {
+    case 0:
+        console.log("Hai comprato un cosmetico");
+        break;
+    case 1:
+        console.log("Hai comprato un balsamo");
+        break;
+    case 2:
+        console.log("Hai comprato uno shampoo");
+        break;
+    default:
+        console.log("Il prodotto non risulta in catalogo");
+        break;
+}
