@@ -94,8 +94,7 @@ console.log(countChar("kakkerlak", "k"));
 /*
 //Funzione che elenca la Successione di Fibonacci da 0 a 100:
 function fiboList() {
-    let stringa = "";
-        stringa = "0, 1, "
+    let stringa = "0, 1, ";
         let n1 = 0;
         let n2 = 1;
         for (let i = 2; i <= 100; i++) {
@@ -114,18 +113,25 @@ console.log(fiboList());
 /*
 //Funzione che restituisce il numero della Successione di Fibonacci che si trova alla posizione data:
 function fiboNum(numPos) {
-        let n1 = 0;
-        let n2 = 1;
-        let num;
-        for (let i = 2; i < numPos; i++) {
-            num = n1 + n2;
-            n1 = n2;
-            n2 = num;
-        }
+    let n1 = 0;
+    let n2 = 1;
+    let num;
+    if (numPos === 0) {
+        return 0;
+    }
+    if (numPos === 1 || numPos === 2) {
+        return 1;
+    }
+    for (let i = 2; i < numPos; i++) {
+        num = n1 + n2;
+        n1 = n2;
+        n2 = num;
+    }
     return num;
 }
-console.log(fiboNum(5));
+console.log(fiboNum(2));
 */
+
 
 /*
 //Funzione che, se il numero dato è presente nella Successione di Fibonacci, ne restituisce la posizione:
@@ -155,17 +161,21 @@ function fiboPos(fibN) {
         }
     }
 }
-fiboPos(2)
+fiboPos(3)
 */
 
 
 /*
 //Funzione che calcola ricorsivamente il fattoriale:
 function factorial(num) {
-    if (num === 1) {
+    if (num === 0) {
         return 1;
     }
     return num * factorial(num - 1);
 }
-console.log(factorial(4));
+console.log(factorial(1));
 */
+
+
+
+
