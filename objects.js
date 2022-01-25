@@ -80,7 +80,24 @@ function sumrange(array) {
 //Reverse Array
 /*
 function reverseArray(array) {
-    to be continued..
+    let arreverse = [];
+    for (let i = 0; i < array.length; i++) {
+        const element = array[i];
+        arreverse.unshift(element);
+    }
+    return arreverse;
 }
-console.log(reverseArray([1, 2, 3, 4, 5]));
+console.log(reverseArray(["A", "B", "C"]));
+
+let arrayValue = [1, 2, 3, 4, 5];
+function reverseArrayInPlace(array) {
+    for (let i = 0; i < array.length / 2; i++) {
+        const element = array[i];
+        arrayValue[i] = array[array.length - 1 - i];
+        arrayValue[array.length - 1 - i] = element;
+    }
+    return arrayValue;
+}
+reverseArrayInPlace(arrayValue);
+console.log(arrayValue);
 */
