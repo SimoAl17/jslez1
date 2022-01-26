@@ -51,53 +51,89 @@ let dimensioniTriangolo = CalcolaTriangoloRettangolo(4, 3, 5);
 //console.log("Il triangolo ha il perimetro di: " + dimensioniTriangolo.perimetro + " e l'area di: " + dimensioniTriangolo.area);
 
 
-//ESERCIZI
 
-//Sum of Range
+let firstNumber = 5;
+function addOne() {
+    firstNumber = firstNumber + 1;
+    return firstNumber;
+}
+let secondNumber = addOne(firstNumber);
+
+//console.log(firstNumber);                                 //6 perché side effect
+//console.log(secondNumber);                                //6 per opera della funzione
+
+
+let userAndrea = {name: "Andrea Asioli", age: 43}
+let myAccount = {userAndrea, balance: 100}
+
+//console.log(myAccount);
+
+function changeAge(newAge, account) {
+    let tempAccount = {...account};                         //Copia il balance ma anche la REFERENCE dell'user,
+    tempAccount.userAndrea.age = newAge;                    //perciò le modifiche verranno apportate anche all'user originale!
+    //let tempAccount = JSON.parse(JSON.stringify(account)) //Copiando l'oggetto in un JSON e poi riconvertendolo in
+    return tempAccount;                                     //un oggetto puoi copiare l'oggetto e i suoi sotto-oggetti  
+}                                                           //senza copiare la reference
+
+//console.log(changeAge(50, myAccount));
 /*
-function range(start, end, step) {
-    let arrange = [];
-    if (step === undefined) {
-        step = 1;
-    }
-    for (let i = start; i <= end; i = i + step) {
-        arrange.push(i);
-    }
-    return arrange;
+function addMoney(moneyToAdd, account) {
+    //let tempAccount2 = {};
+    //tempAccount2 = Object.assign(tempAccount2, account);
+    //tempAccount2.balance = tempAccount2.balance + moneyToAdd;
+    //return tempAccount2;
+    
+    let tempAccount2 = {...account}
+    tempAccount2.balance = tempAccount2.balance + moneyToAdd;
+    return tempAccount2;
 }
-//console.log(range(1, 10));
-
-function sumrange(array) {
-    let sum = 0;
-    for (const element of array) {
-        sum = sum + element;
-    }
-    return sum;
-}
-//console.log(sumrange(range(1,10, 1)));
+let updatedAccount = addMoney(50, myAccount);
+console.log(myAccount);                         //150 perché passaggio per riferimento
+console.log(updatedAccount);                    //150 per opera della funzione
 */
 
-//Reverse Array
-/*
-function reverseArray(array) {
-    let arreverse = [];
-    for (let i = 0; i < array.length; i++) {
-        const element = array[i];
-        arreverse.unshift(element);
-    }
-    return arreverse;
-}
-console.log(reverseArray(["A", "B", "C"]));
+let student2 = {name: "Simone", surname: "Aloia", age: 24};
+console.log(Object.keys(student2));
 
-let arrayValue = [1, 2, 3, 4, 5];
-function reverseArrayInPlace(array) {
-    for (let i = 0; i < array.length / 2; i++) {
-        const element = array[i];
-        arrayValue[i] = array[array.length - 1 - i];
-        arrayValue[array.length - 1 - i] = element;
+/* COMPLETARE
+for (const key in student2) {
+    if (Object.hasOwnProperty.call(student2, key)) {
+        const element = student2[key];
+        
     }
-    return arrayValue;
 }
-reverseArrayInPlace(arrayValue);
-console.log(arrayValue);
+
+for (const iterator of object) {
+    
+}
+
+for (let i = 0; i < array.length; i++) {
+    const element = array[i];
+    
+}
 */
+
+let pippo = {name: "Pippo", city: "Topolinia"}
+let pippo2 = pippo;
+let pippo3 = {name: "Pippo", city: "Topolinia"}
+
+//console.log(pippo === pippo2); //TRUE perché hanno la stessa reference
+//console.log(pippo === pippo3); //FALSE perché hanno lo stesso contenuto ma non la stessa reference
+
+
+const age = 5;
+const name1 = "Osvaldo";
+let baby = {age, name: name1};
+
+//console.log(baby);
+
+
+let finalArray = [23, 13, 5, 12];
+//function sumFirst4ElementsOfArray(array) {
+//    return array[0] + array[1] + array[2] + array[3];
+//}
+
+function sumFirst4ElementsOfArray(el0, el1, el2, el3) {
+    return el0 + el1 + el2 + el3;
+}
+
