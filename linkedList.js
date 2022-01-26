@@ -15,25 +15,25 @@ terzoElemento.prossimo = quartoElemento;
 let node = primoElemento;
 
 let mioPrimoNodo = {};
-function addElementToLinkedList(primoNodo, valore) {
-    if (primoNodo.valore === undefined) {
+function addElementToLinkedList(primoNodo, valore) {                         //Funzione che inserisce un nuovo elemento nella linked list
+    if (primoNodo.valore === undefined) {                                    //Se il primo nodo non ha valore allora inseriscilo lì
         primoNodo.valore = valore;
         primoNodo.prossimo = null;
         primoNodo.precedente = null;
     } else {
-        let ultimoNodo = primoNodo;
+        let ultimoNodo = primoNodo;                                          //Altrimenti continua a scorrere fino a trovare la coda
         while (ultimoNodo.prossimo != null) {
             ultimoNodo = ultimoNodo.prossimo;
         }
-        let nodo = {valore: valore, precedente: ultimoNodo, prossimo: null};
+        let nodo = {valore: valore, precedente: ultimoNodo, prossimo: null}; //E collega un nuovo nodo con il valore
         ultimoNodo.prossimo = nodo;
     }
 }
 
 addElementToLinkedList(mioPrimoNodo, 6)
-console.log(mioPrimoNodo);
+//console.log(mioPrimoNodo);
 addElementToLinkedList(mioPrimoNodo, 12)
-console.log(mioPrimoNodo);
+//console.log(mioPrimoNodo);
 
 
 
@@ -47,23 +47,43 @@ console.log(mioPrimoNodo);
 //}
 
 while (node != null) {
-    console.log(node.valore);
+//    console.log(node.valore);
     node = node.prossimo;
 }
 
 
 //Funzione che converte una linked list in un array
 
-function linkedListToArray(p) {
-    
+function linkedListToArray(linkedList) {
+    node = linkedList;
+    let array = [];
+    let cont = 0;
+    while (node != null) {
+        array[cont] = node.valore;
+        cont++;
+        node = node.prossimo;
+    }
+    return array;
 }
 
-console.log(linkedListToArray());
+console.log("Da Linked List ad Array: ", linkedListToArray(primoElemento));
+
 
 //Funzione che converte un array in una linked list
 
+let array = [7, 8, 12, 5];
 function arrayToLinkedList(array) {
-    
+    let lList = {valore: array[0], precedente: null, prossimo: null};                   //Crea il primo nodo col primo valore
+    if (array.length > 1) {
+        let codaNodo = lList;                                                           //Il primo nodo è attualmente la coda
+        for (let i = 1; i < array.length; i++) {
+            let nodoAttuale = {valore: array[i], precedente: codaNodo, prossimo: null}  //Crea un nuovo nodo, collegalo alla coda..
+            codaNodo.prossimo = nodoAttuale;                                            //E viceversa
+            codaNodo = nodoAttuale;
+        }
+    }
+    return lList;
 }
 
-console.log(arrayToLinkedList());
+console.log("Da Array a Linked List: ", arrayToLinkedList(array));
+console.log("Prova del nove: ", linkedListToArray(arrayToLinkedList(array)));

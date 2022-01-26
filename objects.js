@@ -95,23 +95,28 @@ console.log(updatedAccount);                    //150 per opera della funzione
 let student2 = {name: "Simone", surname: "Aloia", age: 24};
 console.log(Object.keys(student2));
 
-/* COMPLETARE
 for (const key in student2) {
     if (Object.hasOwnProperty.call(student2, key)) {
         const element = student2[key];
-        
+        console.log(element);
     }
 }
 
-for (const iterator of object) {
-    
+for (const key of Object.keys(student2)) {
+    if (Object.hasOwnProperty.call(student2, key)) {
+        const element = student2[key];
+        console.log(element);
+    }
 }
 
-for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    
+for (let i = 0; i < Object.keys(student2).length; i++) {
+    const key = Object.keys(student2)[i];
+    if (Object.hasOwnProperty.call(student2, key)) {
+        const element = student2[key];
+        console.log(element);
+    }
 }
-*/
+
 
 let pippo = {name: "Pippo", city: "Topolinia"}
 let pippo2 = pippo;
