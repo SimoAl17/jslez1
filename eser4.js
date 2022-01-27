@@ -43,7 +43,7 @@ console.log(filterSex("F"));
 
 //Filtro generico
 
-function filter(category, value) {
+function filterGene(category, value) {
     let array = [];
     for (let i = 0; i < studenti.length; i++) {
         let studente = studenti[i];
@@ -54,7 +54,7 @@ function filter(category, value) {
     return array;
 }
 
-console.log(filter("età", 26));
+console.log(filterGene("età", 26));
 
 //Aggiungi un nuovo elemento all'array a patto che sia dello stesso tipo degli elementi già presenti
 
@@ -78,11 +78,49 @@ let misto = [1, 2, true, 3, "pippo", false];
 function cleanArray(arr, tipo) {
     let pulito = [];
     for (let i = 0; i <= arr.length; i++) {
-        if ((typeof arr[i]) === (typeof tipo)) {
+        if ((typeof arr[i]) === tipo) {
             pulito.push(arr[i]);
         }
     }
     return pulito;
 }
 
-console.log(cleanArray(misto, false));
+console.log(cleanArray(misto, "boolean"));
+
+let arrei = [100, 101, 9, 1000, 12, -3]
+
+//Rimuovi i valori maggiori di 100
+
+function filterGreaterThan100(arr) {
+    let pulito = [];
+    for (let i = 0; i <= arr.length; i++) {
+        if (arr[i] <= 100) {
+            pulito.push(arr[i]);
+        } 
+    }
+    return pulito;
+}
+
+console.log(filterGreaterThan100(arrei));
+
+function filter(arr, func) {
+    let pulito = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i]) === true) {
+            pulito.push(arr[i]);
+        } else {
+            continue;
+        }
+    }
+    return pulito;
+}
+
+function greaterThan30(number) {
+    if (number > 30) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+console.log(filter(arrei, greaterThan30));

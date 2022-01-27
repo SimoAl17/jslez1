@@ -124,7 +124,7 @@ function nth(listNode, number) {
             nodoAttuale = nodoAttuale.prossimo;
         }
         if (nodoAttuale === null) {
-            return "error";
+            return undefined;
         } else {
             return nodoAttuale.valore;
         }
