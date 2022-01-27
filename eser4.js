@@ -56,3 +56,33 @@ function filter(category, value) {
 
 console.log(filter("età", 26));
 
+//Aggiungi un nuovo elemento all'array a patto che sia dello stesso tipo degli elementi già presenti
+
+let numeri = [1, 5, 2];
+
+function addElementIfCompatible(arr, value) {
+    if ((typeof arr[0]) === (typeof value)) {
+        arr.push(value);
+        return arr;
+    } else {
+        return "Questo elemento non è compatibile";
+    }
+}
+
+console.log(addElementIfCompatible(numeri, "pippo"));
+
+//Pulisci l'array dagli elementi di tipo diverso da quello indicato
+
+let misto = [1, 2, true, 3, "pippo", false];
+
+function cleanArray(arr, tipo) {
+    let pulito = [];
+    for (let i = 0; i <= arr.length; i++) {
+        if ((typeof arr[i]) === (typeof tipo)) {
+            pulito.push(arr[i]);
+        }
+    }
+    return pulito;
+}
+
+console.log(cleanArray(misto, false));
