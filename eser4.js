@@ -374,3 +374,44 @@ function caseInFiamme(previous, current, index) {
 
 console.log(reduce(testArray3, caseInFiamme));
 console.log(testArray3.reduce((previous, current, index) => index % 2 === 0 ? previous + current : previous + " "));
+
+
+//Usa reduce e concat per unire 3 array in un unico array
+
+let arrays = [[1, 2, 3], [4, 5], [6]];
+
+console.log(arrays.reduce((previous, current, index) => previous.concat(arrays[index])));
+
+//Ciclo FOR high order
+
+function loop(value, test, update, body) {
+    for (let i = value; test(value); value = update(value)) {
+        body(value);
+    }
+}
+
+loop(3, n => n > 0, n => n - 1, console.log);
+
+//Every
+
+function everyLoop(array, test) {
+    for (const element of array) {
+        if (test(element) === false) {
+            return false;
+        }
+    }
+    return true;
+}
+
+console.log(everyLoop([1, 3, 5], n => n < 10));
+console.log(everyLoop([2, 4, 16], n => n < 10));
+
+function everySome(array, test) {
+    if (array.some(n => n > 10)) {
+        return false;
+    }
+    return true;
+}
+
+console.log(everySome([1, 3, 5], n => n < 10));
+console.log(everySome([2, 4, 16], n => n < 10));

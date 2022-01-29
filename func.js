@@ -14,7 +14,7 @@ console.log(capitalize("pippo"));
 
 let multiplyByTwo = (myNumber) => myNumber * 2;             //funzione elegante
 
-let multiplyBy2 = (myNumber) => {                           //funzione meno elegante
+let multiplyBy2 = (myNumber) => {                           //funzione meno elegante per operazioni più complesse
     let result = myNumber * 2;
     return result;
 }
