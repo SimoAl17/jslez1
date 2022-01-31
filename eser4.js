@@ -382,6 +382,7 @@ let arrays = [[1, 2, 3], [4, 5], [6]];
 
 console.log(arrays.reduce((previous, current, index) => previous.concat(arrays[index])));
 
+
 //Ciclo FOR high order
 
 function loop(value, test, update, body) {
@@ -391,6 +392,7 @@ function loop(value, test, update, body) {
 }
 
 loop(3, n => n > 0, n => n - 1, console.log);
+
 
 //Every
 
@@ -415,3 +417,193 @@ function everySome(array, test) {
 
 console.log(everySome([1, 3, 5], n => n < 10));
 console.log(everySome([2, 4, 16], n => n < 10));
+
+
+///////////////////////////////////////////////////////////////////
+
+let array4 = [12, 345, -1234, 1, 0, 23456, -2, 2, 3];
+
+//Reduce => Maggiore
+
+console.log(array4.reduce((previous, current) => current > previous ? previous = current : previous = previous));
+
+
+//Reduce => Minore
+
+console.log(array4.reduce((previous, current) => current < previous ? previous = current : previous = previous));
+
+
+//Somma dei pari
+
+console.log(array4.reduce((previous, current) => current % 2 === 0 ? previous = current + previous : previous = previous));
+
+
+//////////////
+
+let array5 = ["Pippo", "Paperone", "Gambadilegno", "Basettoni", "Clarabella", "Orazio"];
+
+let string = "Pippo";
+
+function checkIfStringContainsAVowel(string) {
+    for (let i = 0; i < string.length; i++) {
+        const char = string[i];
+
+        if (char === "a") {
+            return true;
+        }
+        if (char === "e") {
+            return true;
+        }
+        if (char === "i") {
+            return true;
+        }
+        if (char === "o") {
+            return true;
+        }
+        if (char === "u") {
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkIfStringContainsAVowel2(str) {
+
+    return ["a", "e", "i", "o", "u"].some((v) => str.includes(v));
+}
+
+function checkIfStringNotContainsAVowel(str) {
+
+    // let vowels = ["a", "e", "i", "o", "u"];
+    // return !vowels.some((v) => string.includes(v));
+    return !["a", "e", "i", "o", "u"].some((v) => str.includes(v));
+}
+
+console.log(checkIfStringContainsAVowel(string));
+console.log(checkIfStringContainsAVowel2(string));
+console.log(checkIfStringNotContainsAVowel(string));
+
+function arrayOfVowels(str){
+    let arrayFromString = [...str];
+    let vowelsArray = arrayFromString.filter(checkIfStringContainsAVowel2)
+    return vowelsArray;
+}
+
+function arrayOfConsonants(str){
+    let arrayFromString = [...str];
+    let vowelsArray = arrayFromString.filter(checkIfStringNotContainsAVowel)
+    return vowelsArray;
+}
+
+console.log(arrayOfVowels(string));
+console.log(arrayOfConsonants(string));
+
+let arrayOfCon = arrayOfConsonants(string);
+
+let setOfConsonants = new Set(arrayOfCon);         //Crea un SET. È come un array, ma rimuove i doppioni nei valori
+
+let stringOfCon = [...setOfConsonants].join("");
+
+console.log(stringOfCon);
+console.log([...new Set(arrayOfConsonants(string))].join(""))
+
+function fromStringToVowelArray(string){
+    return [...string].filter(c => ["a", "e", "i", "o", "u"].some(v => v === c.toLowerCase()))
+}
+
+console.log(array5.reduce((p, c) => [...p, ...fromStringToVowelArray(c)], []));
+
+
+function fromStringToConsonantsString(string){
+    let consonantsArray = [...string.toLowerCase()].filter(c => !["a", "e", "i", "o", "u"].some(v => v === c.toLowerCase()));
+    return consonantsArray.join("");
+}
+
+console.log(array5.reduce((p, c) => [...new Set([...(p + fromStringToConsonantsString(c))])].join(""), ""));
+
+array5.forEach((e) => console.log(e));
+
+
+for (const string of array5) {
+    console.log(string.toUpperCase());
+}
+
+
+array5.forEach((e) => console.log(e.toUpperCase()));
+
+
+console.log(array4.sort());
+
+console.log(array5.sort());
+
+/////////////////////////////////////////////////////////////////////////
+
+let stud1 = {name:"pippo", age:12, gender: "m"};
+
+let stud2 = {name:"pluto", age:18 , gender: "m"};
+
+let stud3 = {name:"topolina", age:13, gender: "f"};
+
+let stud4 = {name:"paperina", age:18, gender: "f"};
+
+let students = [stud1, stud2, stud3, stud4];
+
+
+console.log(students.sort(compareStudents3));           //Le funzioni compare spiegano al sort secondo quale proprietà deve ordinare gli oggetti
+
+
+function compareStudents(st1, st2){
+    if (st1.age > st2.age) {
+        return 1;
+    }
+
+    if (st1.age < st2.age) {
+        return -1;
+    }
+
+    if (st1.age === st2.age) {
+        return 0;
+    }
+}
+
+
+function compareStudents2(st1, st2){
+    return st1.gender.localeCompare(st2.gender);
+}
+
+function compareStudents3(st1, st2) {
+    return st2.age - st1.age
+}
+
+////////
+
+let athlete1 = {name: "giovanni", surname:"landi", position: 2}
+let athlete2 = {name: "lorena", surname:"landi", position: 2}
+let athlete3 = {name: "pippo", surname:"barbigli", position: 1}
+let athlete4 = {name: "simona", surname:"perri", position: 3}
+let athlete5 = {name: "elmo", surname:"recalcati", position: 2}
+
+let athletes = [athlete1, athlete2, athlete3, athlete4, athlete5];
+
+
+
+console.log([...athletes]);
+
+
+athletes.sort((s1, s2)=> s1.position - s2.position)
+
+function compareBySurname(stud1, stud2) {
+    return stud1.surname.localeCompare(stud2.surname);
+}
+/*
+function compareByPosition(stud1, stud2) {             NON FUNZIONA??
+    return stud1.position.localeCompare(stud2.position);
+}*/
+
+/*
+function compareByPositionPlus(stud1, stud2) {
+    
+}*/
+
+console.log(athletes.sort(compareBySurname));
+console.log(athletes.sort(compareByPosition));
