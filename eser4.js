@@ -595,15 +595,57 @@ athletes.sort((s1, s2)=> s1.position - s2.position)
 function compareBySurname(stud1, stud2) {
     return stud1.surname.localeCompare(stud2.surname);
 }
-/*
-function compareByPosition(stud1, stud2) {             NON FUNZIONA??
-    return stud1.position.localeCompare(stud2.position);
-}*/
 
-/*
+function compareByPosition(stud1, stud2) {
+    return stud1.position - stud2.position;
+}
+
+
 function compareByPositionPlus(stud1, stud2) {
-    
-}*/
+    if (stud1.position === stud2.position) {
+        if (stud1.surname === stud2.surname) {
+            return stud1.name.localeCompare(stud2.name);
+        } else {
+            return stud1.surname.localeCompare(stud2.surname);
+        }
+    } else {
+        return stud1.position - stud2.position;
+    }
+}
 
 console.log(athletes.sort(compareBySurname));
 console.log(athletes.sort(compareByPosition));
+
+////////////
+
+function swapCase(string) {
+    const firstChar = string[0];
+    const firstCharLower = firstChar.toLowerCase();
+    const remainingString = string.substring(1);
+    const remainingStringUpper = remainingString.toUpperCase();
+    return firstCharLower + remainingStringUpper;
+}
+
+console.log(array5.map(swapCase));
+console.log(array5.map((s) => s[0].toLowerCase() + s.substring(1).toUpperCase()));
+console.log(array5.reduce((p, c) => [...p, swapCase(c)], []));
+
+function checkIfContainsR(string) {
+    if (string.includes("r")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function checkIfContainsString(string, stringToCheck) {
+    return string.toLowerCase().includes(stringToCheck);
+}
+
+function checkIfContainsString2(stringToCheck) {
+    return (string) => string.toLowerCase().includes(stringToCheck);            //Una funzione può restituire una seconda funzione
+}
+
+console.log(array5.filter(checkIfContainsR));
+console.log(array5.filter((s) => s.includes("r")));
+console.log(array5.reduce((p, c) => checkIfContainsR(c) ? [...p, c] : p, []));
